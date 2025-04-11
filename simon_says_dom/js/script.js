@@ -31,3 +31,17 @@ const countdown = setInterval(() => {
         form.classList.remove('d-none');
       }
     }, 1000);
+
+    
+    // Funzione per generare numeri casuali unici
+function generateRandomNumbers(count, min, max) {
+    const numbers = [];
+    while (numbers.length < count) {
+      const num = Math.floor(Math.random() * (max - min + 1)) + min;
+      if (!numbers.includes(num)) {
+        numbers.push(num);
+      }
+    }
+    return numbers;
+  }
+  
