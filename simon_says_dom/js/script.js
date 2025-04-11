@@ -32,7 +32,7 @@ const countdown = setInterval(() => {
       }
     }, 1000);
 
-    
+
     // Funzione per generare numeri casuali unici
 function generateRandomNumbers(count, min, max) {
     const numbers = [];
@@ -44,4 +44,43 @@ function generateRandomNumbers(count, min, max) {
     }
     return numbers;
   }
+  
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Evita il refresh della pagina
+  
+    // Prendo tutti i valori inseriti
+    const userNumbers = [];
+    let isValid = true;
+    message.textContent = ''; // Svuota messaggio
+  
+    // Reset input con classi d'errore (visivo)
+    [...inputGroup.children].forEach(input => input.classList.remove('is-invalid'));
+  
+    [...inputGroup.children].forEach(input => {
+      const value = parseInt(input.value);
+      
+      // Validazione base: è un numero? tra 1 e 50?
+      if (isNaN(value) || value < 1 || value > 50 || userNumbers.includes(value)) {
+        input.classList.add('is-invalid'); // Aggiunge bordo rosso
+        isValid = false;
+      } else {
+        userNumbers.push(value);
+      }
+    });
+  
+    // Se non valido, mostra errore e blocca
+    if (!isValid) {
+      message.textContent = 'Inserisci solo numeri validi e diversi tra loro (da 1 a 50)';
+      return;
+    }
+  
+    // Confronto con i numeri originali
+    const guessed = userNumbers.filter(num => randomNumbers.includes(num));
+  
+    // Mostro il risultato
+    message.classList.remove('text-danger');
+    message.classList.add('text-success');
+    message.textContent = `Hai indovinato ${guessed.length} numero/i: ${guessed.join(', ')}`;
+  });
   
