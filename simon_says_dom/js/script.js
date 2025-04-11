@@ -18,3 +18,7 @@ randomNumbers.forEach(num => {
 
   let seconds = 30;
 countdownElement.textContent = seconds;
+
+const countdown = setInterval(() => {
+    seconds--;
+    countdownElement.textContent = seconds;
