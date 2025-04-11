@@ -14,3 +14,7 @@ randomNumbers.forEach(num => {
     numbersList.appendChild(li);              // lo aggiunge alla lista
   });
   
+
+
+  let seconds = 30;
+countdownElement.textContent = seconds;
