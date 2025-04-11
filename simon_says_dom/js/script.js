@@ -22,3 +22,12 @@ countdownElement.textContent = seconds;
 const countdown = setInterval(() => {
     seconds--;
     countdownElement.textContent = seconds;
+
+    if (seconds === 0) {
+        clearInterval(countdown);
+        numbersList.classList.add('d-none');
+        countdownElement.classList.add('d-none');
+        document.getElementById('instructions').textContent = "Inserisci i numeri che ricordi";
+        form.classList.remove('d-none');
+      }
+    }, 1000);
